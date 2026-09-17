@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Promptscaper</title>
+<meta name="description" content="Optimize prompts and verify AI answers.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗺️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="logo">Promptscaper</a>
+    <nav class="nav-links">
+      <a href="dashboard.html" class="nav-login">Dashboard</a>
+      <a href="account.html">Account</a>
+      <a href="index.html" class="btn btn-small">Log out</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main class="dash-main-wrap">
+  <div class="wrap dash-shell">
+
+    <aside class="dash-sidebar">
+      <div class="usage-box">
+        <p class="usage-label">This month · Free plan</p>
+
+        <div class="usage-row">
+          <span>Optimize</span>
+          <span id="optimize-count">0 / 5</span>
+        </div>
+        <div class="usage-bar"><div class="usage-fill" id="optimize-fill"></div></div>
+
+        <div class="usage-row usage-row-spaced">
+          <span>Verify</span>
+          <span id="verify-count">0 / 5</span>
+        </div>
+        <div class="usage-bar"><div class="usage-fill usage-fill-gold" id="verify-fill"></div></div>
+
+        <a href="pricing.html" class="btn btn-ghost btn-full upgrade-btn">Upgrade plan</a>
+      </div>
+    </aside>
+
+    <section class="dash-content">
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" data-tab="optimize" role="tab" aria-selected="true">Prompt Optimizer</button>
+        <button class="tab-btn" data-tab="verify" role="tab" aria-selected="false">Answer Verifier</button>
+      </div>
+
+      <!-- OPTIMIZER PANEL -->
+      <div class="tab-panel" id="panel-optimize" role="tabpanel">
+        <div class="panel-grid">
+          <div class="panel-input">
+            <label for="rough-prompt">Your rough prompt</label>
+            <textarea id="rough-prompt" rows="6" placeholder="e.g. write about dogs"></textarea>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="target-ai">Target AI</label>
+                <select id="target-ai">
+                  <option>ChatGPT</option>
+                  <option>Claude</option>
+                  <option>Gemini</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="prompt-style">Style</label>
+                <select id="prompt-style">
+                  <option>Concise</option>
+                  <option>Detailed</option>
+                  <option>Step-by-step</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary" id="optimize-btn">Optimize prompt</button>
+          </div>
+
+          <div class="panel-output">
+            <label>Optimized prompt</label>
+            <div class="output-box" id="optimize-output">
+              <p class="output-placeholder">Your optimized prompt will appear here.</p>
+            </div>
+            <button type="button" class="btn btn-ghost btn-small-pad" id="copy-optimize" disabled>Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VERIFIER PANEL -->
+      <div class="tab-panel" id="panel-verify" role="tabpanel" hidden>
+        <div class="panel-grid">
+          <div class="panel-input">
+            <label for="ai-answer">Paste the AI's answer</label>
+            <textarea id="ai-answer" rows="8" placeholder="Paste the full answer you got from ChatGPT, Claude or Gemini..."></textarea>
+            <button type="button" class="btn btn-primary" id="verify-btn">Verify answer</button>
+          </div>
+
+          <div class="panel-output">
+            <label>Verification report</label>
+            <div class="output-box" id="verify-output">
+              <p class="output-placeholder">Claim-by-claim results will appear here.</p>
+            </div>
+            <button type="button" class="btn btn-ghost btn-small-pad" id="copy-report" disabled>Copy report</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<script src="script.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>
