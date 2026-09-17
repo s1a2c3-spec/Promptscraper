@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promptscaper — Shape sharper prompts. Trust the answers.</title>
+<meta name="description" content="Promptscaper optimizes your AI prompts and verifies AI answers for ChatGPT, Claude and Gemini — in one place.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗺️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="/" class="logo">Promptscaper</a>
+    <nav class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="login.html" class="nav-login">Log in</a>
+      <a href="signup.html" class="btn btn-small">Try it free</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>Shape sharper prompts.<br>Trust the answers.</h1>
+        <p class="hero-sub">Promptscaper rewrites your rough prompt before you send it to ChatGPT, Claude or Gemini — then checks the answer's claims against real sources when it comes back.</p>
+        <div class="hero-cta">
+          <a href="signup.html" class="btn btn-primary">Try it free</a>
+          <a href="pricing.html" class="btn btn-ghost">See pricing</a>
+        </div>
+        <p class="hero-note">No card needed · 5 free checks a month</p>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="mock-card">
+          <div class="mock-label">Prompt Optimizer</div>
+          <div class="mock-line mock-before">"write about dogs"</div>
+          <div class="mock-arrow">↓</div>
+          <div class="mock-line mock-after">"Write a 400-word guide comparing 3 dog breeds suited for small Indian apartments, covering exercise needs, grooming and temperament."</div>
+        </div>
+        <div class="mock-card mock-card-2">
+          <div class="mock-label">Answer Verifier</div>
+          <div class="mock-claim">
+            <span class="dot dot-verified"></span>
+            <span>Labradors need ~1 hour of daily exercise</span>
+          </div>
+          <div class="mock-claim">
+            <span class="dot dot-uncertain"></span>
+            <span>Pugs are hypoallergenic</span>
+          </div>
+          <div class="mock-score">Trust score: <strong>82%</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="flow" id="how">
+    <div class="wrap">
+      <h2>One prompt, three checkpoints</h2>
+      <div class="flow-grid">
+        <div class="flow-step">
+          <span class="flow-num">1</span>
+          <h3>Optimize</h3>
+          <p>Paste your rough idea. Choose the AI you're sending it to and the style you want — Promptscaper rewrites it to get a sharper, more specific answer.</p>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">2</span>
+          <h3>Ask</h3>
+          <p>Copy the optimized prompt into ChatGPT, Claude or Gemini, exactly as you normally would. Nothing changes about how you use those tools.</p>
+        </div>
+        <div class="flow-step">
+          <span class="flow-num">3</span>
+          <h3>Verify</h3>
+          <p>Paste the answer back in. Promptscaper checks each factual claim against live sources and flags what's confirmed, uncertain, or likely wrong.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing-preview">
+    <div class="wrap">
+      <h2>Start free. Upgrade when you outgrow it.</h2>
+      <div class="price-strip">
+        <div class="price-card">
+          <div class="price-name">Free</div>
+          <div class="price-amount">₹0</div>
+          <p>5 optimizes + 5 verifies a month</p>
+        </div>
+        <div class="price-card price-card-featured">
+          <div class="price-name">Starter</div>
+          <div class="price-amount">₹149<span>/mo</span></div>
+          <p>60 optimizes + 60 verifies a month</p>
+        </div>
+        <div class="price-card">
+          <div class="price-name">Pro</div>
+          <div class="price-amount">₹349<span>/mo</span></div>
+          <p>High-volume use, saved history, priority speed</p>
+        </div>
+      </div>
+      <a href="pricing.html" class="btn btn-ghost">Compare all plans</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span class="logo">Promptscaper</span>
+    <p>Built for people who use AI every day and want to trust what it tells them.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
