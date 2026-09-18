@@ -1,28 +1,55 @@
-// This file currently handles only front-end form behavior.
-// Supabase signup logic will be added in a later step —
-// for now it shows how the form will respond once connected.
+// Handles real sign-up via Supabase Auth.
 
 const signupForm = document.getElementById('signup-form');
 const authError = document.getElementById('auth-error');
 const googleBtn = document.getElementById('google-signup');
 
 if (signupForm) {
-  signupForm.addEventListener('submit', (e) => {
+  signupForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     authError.hidden = true;
 
-    // TODO (next step): replace this with a real Supabase call, e.g.
-    // const { data, error } = await supabase.auth.signUp({ email, password, options: { data: { name } } });
-    // if (error) { show authError } else { redirect to dashboard.html }
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const submitBtn = signupForm.querySelector('button[type="submit"]');
 
-    authError.textContent = 'Sign-up isn\'t connected yet — Supabase wiring comes in the next step.';
-    authError.hidden = false;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Creating account...';
+
+    const { data, error } = await sbClient.auth.signUp({
+      email,
+      password,
+      options: { data: { name } }
+    });
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Create account';
+
+    if (error) {
+      authError.textContent = error.message;
+      authError.hidden = false;
+      return;
+    }
+
+    if (data.session) {
+      // Email confirmation is off — logged in immediately
+      window.location.href = 'dashboard.html';
+    } else {
+      // Email confirmation is on — Supabase sent a confirmation email
+      authError.textContent = 'Account created! Check your email to confirm, then log in.';
+      authError.style.color = 'var(--teal)';
+      authError.hidden = false;
+      signupForm.reset();
+    }
   });
 }
 
 if (googleBtn) {
-  googleBtn.addEventListener('click', () => {
-    // TODO (next step): supabase.auth.signInWithOAuth({ provider: 'google' })
-    alert('Google sign-up will be connected once Supabase is wired up.');
+  googleBtn.addEventListener('click', async () => {
+    await sbClient.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: window.location.origin + '/dashboard.html' }
+    });
   });
 }

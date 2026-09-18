@@ -1,28 +1,44 @@
-// This file currently handles only front-end form behavior.
-// Supabase login logic will be added in a later step —
-// for now it shows how the form will respond once connected.
+// Handles real login via Supabase Auth.
 
 const loginForm = document.getElementById('login-form');
 const authError = document.getElementById('auth-error');
 const googleBtn = document.getElementById('google-login');
 
 if (loginForm) {
-  loginForm.addEventListener('submit', (e) => {
+  loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     authError.hidden = true;
 
-    // TODO (next step): replace this with a real Supabase call, e.g.
-    // const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-    // if (error) { show authError } else { redirect to dashboard.html }
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const submitBtn = loginForm.querySelector('button[type="submit"]');
 
-    authError.textContent = 'Login isn\'t connected yet — Supabase wiring comes in the next step.';
-    authError.hidden = false;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Logging in...';
+
+    const { data, error } = await sbClient.auth.signInWithPassword({ email, password });
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Log in';
+
+    if (error) {
+      authError.textContent = error.message === 'Invalid login credentials'
+        ? 'Incorrect email or password.'
+        : error.message;
+      authError.hidden = false;
+      return;
+    }
+
+    // Success — go to dashboard
+    window.location.href = 'dashboard.html';
   });
 }
 
 if (googleBtn) {
-  googleBtn.addEventListener('click', () => {
-    // TODO (next step): supabase.auth.signInWithOAuth({ provider: 'google' })
-    alert('Google login will be connected once Supabase is wired up.');
+  googleBtn.addEventListener('click', async () => {
+    await sbClient.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: window.location.origin + '/dashboard.html' }
+    });
   });
 }
