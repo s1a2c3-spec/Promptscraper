@@ -20,7 +20,7 @@
     <nav class="nav-links">
       <a href="dashboard.html" class="nav-login">Dashboard</a>
       <a href="account.html">Account</a>
-      <a href="index.html" class="btn btn-small">Log out</a>
+      <a href="#" class="btn btn-small" id="logout-btn">Log out</a>
     </nav>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -61,8 +61,8 @@
       <div class="tab-panel" id="panel-optimize" role="tabpanel">
         <div class="panel-grid">
           <div class="panel-input">
-            <label for="rough-prompt">Your rough prompt</label>
-            <textarea id="rough-prompt" rows="6" placeholder="e.g. write about dogs"></textarea>
+            <label for="rough-prompt">Your rough prompt <span class="label-hint">(Hindi, Hinglish or English)</span></label>
+            <textarea id="rough-prompt" rows="6" placeholder="e.g. 'kutto ke baare mein likho' or 'write about dogs' — Promptscaper understands both"></textarea>
 
             <div class="field-row">
               <div class="field">
@@ -119,6 +119,9 @@
   </div>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
+<script src="auth-guard.js"></script>
 <script src="script.js"></script>
 <script src="dashboard.js"></script>
 </body>

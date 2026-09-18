@@ -3,13 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Promptscaper — Shape sharper prompts. Trust the answers.</title>
-<meta name="description" content="Promptscaper optimizes your AI prompts and verifies AI answers for ChatGPT, Claude and Gemini — in one place.">
+<title>Promptscaper — AI Prompt Optimizer & Answer Verifier for ChatGPT, Claude, Gemini</title>
+<meta name="description" content="Promptscaper optimizes your AI prompts (Hindi, Hinglish or English) and verifies ChatGPT, Claude and Gemini answers for factual accuracy — in one place, free to start.">
+<link rel="canonical" href="https://promptscaper.com/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗺️</text></svg>">
+
+<!-- Open Graph / social sharing -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Promptscaper — AI Prompt Optimizer & Answer Verifier">
+<meta property="og:description" content="Optimize your rough prompts and fact-check AI answers from ChatGPT, Claude and Gemini — in one simple tool. Works in Hindi, Hinglish and English.">
+<meta property="og:url" content="https://promptscaper.com/">
+<meta property="og:site_name" content="Promptscaper">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Promptscaper — AI Prompt Optimizer & Answer Verifier">
+<meta name="twitter:description" content="Optimize prompts and verify AI answers for ChatGPT, Claude and Gemini. Works in Hindi, Hinglish and English.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
+<!-- Structured data: helps Google + AI answer engines (ChatGPT, Perplexity, AI Overviews) understand and cite this page -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Promptscaper",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "description": "An AI prompt optimizer and answer verifier for ChatGPT, Claude and Gemini. Rewrites rough prompts (including Hindi and Hinglish input) into clear English prompts, and fact-checks AI answers against live sources.",
+  "offers": [
+    { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "INR" },
+    { "@type": "Offer", "name": "Starter", "price": "699", "priceCurrency": "INR" },
+    { "@type": "Offer", "name": "Pro", "price": "999", "priceCurrency": "INR" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I write my prompt in Hindi or Hinglish?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Promptscaper understands Hindi and Hinglish input and rewrites it into a clear, optimized English prompt for ChatGPT, Claude or Gemini."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Promptscaper?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Promptscaper is a tool that optimizes rough prompts before you send them to ChatGPT, Claude or Gemini, and verifies the factual claims in the AI's answer against live sources."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -95,17 +148,18 @@
         <div class="price-card">
           <div class="price-name">Free</div>
           <div class="price-amount">₹0</div>
-          <p>5 optimizes + 5 verifies a month</p>
+          <p>15 optimizes + 3 verifies a week</p>
         </div>
         <div class="price-card price-card-featured">
+          <div class="price-badge">Most Popular</div>
           <div class="price-name">Starter</div>
-          <div class="price-amount">₹149<span>/mo</span></div>
-          <p>60 optimizes + 60 verifies a month</p>
+          <div class="price-amount">₹699<span>/mo</span></div>
+          <p>150 optimizes + 60 verifies a month</p>
         </div>
         <div class="price-card">
           <div class="price-name">Pro</div>
-          <div class="price-amount">₹349<span>/mo</span></div>
-          <p>High-volume use, saved history, priority speed</p>
+          <div class="price-amount">₹999<span>/mo</span></div>
+          <p>500 optimizes + 180 verifies, priority speed</p>
         </div>
       </div>
       <a href="pricing.html" class="btn btn-ghost">Compare all plans</a>

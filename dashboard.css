@@ -100,6 +100,12 @@
   margin-bottom: 8px;
 }
 
+.label-hint {
+  color: var(--teal);
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+
 textarea, select {
   width: 100%;
   background: var(--surface);
