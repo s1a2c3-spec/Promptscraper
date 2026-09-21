@@ -26,17 +26,58 @@ const optimizeOutput = document.getElementById('optimize-output');
 const copyOptimizeBtn = document.getElementById('copy-optimize');
 
 if (optimizeBtn) {
-  optimizeBtn.addEventListener('click', () => {
+  optimizeBtn.addEventListener('click', async () => {
     const roughPrompt = document.getElementById('rough-prompt').value.trim();
     if (!roughPrompt) {
       optimizeOutput.innerHTML = '<p class="output-placeholder">Type a prompt first.</p>';
       return;
     }
 
-    // TODO (next step): send roughPrompt + target AI + style to the
-    // backend API, which calls Claude/GPT to rewrite the prompt.
-    optimizeOutput.innerHTML = '<p class="output-placeholder">Optimizer isn\'t connected to the AI yet — this comes in the next step (backend API wiring).</p>';
-    copyOptimizeBtn.disabled = true;
+    const targetAI = document.getElementById('target-ai').value;
+    const style = document.getElementById('prompt-style').value;
+
+    optimizeBtn.disabled = true;
+    optimizeBtn.textContent = 'Optimizing...';
+    optimizeOutput.innerHTML = '<p class="output-placeholder">Working on it...</p>';
+
+    try {
+      const { data: { session } } = await sbClient.auth.getSession();
+      if (!session) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      const res = await fetch('/api/optimize', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({ roughPrompt, targetAI, style }),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        optimizeOutput.innerHTML = `<p class="output-placeholder">${result.error || 'Something went wrong. Please try again.'}</p>`;
+        copyOptimizeBtn.disabled = true;
+        return;
+      }
+
+      optimizeOutput.innerHTML = `<p class="result-text">${result.optimizedPrompt}</p>`;
+      copyOptimizeBtn.disabled = false;
+
+      if (result.usage) {
+        document.getElementById('optimize-count').textContent = `${result.usage.optimize} / ${result.usage.optimizeLimit}`;
+        const pct = Math.min(100, (result.usage.optimize / result.usage.optimizeLimit) * 100);
+        document.getElementById('optimize-fill').style.width = `${pct}%`;
+      }
+    } catch (err) {
+      optimizeOutput.innerHTML = '<p class="output-placeholder">Network error. Please check your connection and try again.</p>';
+    } finally {
+      optimizeBtn.disabled = false;
+      optimizeBtn.textContent = 'Optimize prompt';
+    }
   });
 }
 
