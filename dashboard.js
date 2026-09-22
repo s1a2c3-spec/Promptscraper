@@ -94,18 +94,74 @@ const verifyOutput = document.getElementById('verify-output');
 const copyReportBtn = document.getElementById('copy-report');
 
 if (verifyBtn) {
-  verifyBtn.addEventListener('click', () => {
+  verifyBtn.addEventListener('click', async () => {
     const answer = document.getElementById('ai-answer').value.trim();
     if (!answer) {
       verifyOutput.innerHTML = '<p class="output-placeholder">Paste an AI answer first.</p>';
       return;
     }
 
-    // TODO (next step): send `answer` to the backend API, which extracts
-    // claims, checks them against web search results, and returns a
-    // verdict per claim plus an overall trust score.
-    verifyOutput.innerHTML = '<p class="output-placeholder">Verifier isn\'t connected to search/AI yet — this comes in the next step (backend API wiring).</p>';
-    copyReportBtn.disabled = true;
+    verifyBtn.disabled = true;
+    verifyBtn.textContent = 'Verifying...';
+    verifyOutput.innerHTML = '<p class="output-placeholder">Checking claims against sources...</p>';
+
+    try {
+      const { data: { session } } = await sbClient.auth.getSession();
+      if (!session) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      const res = await fetch('/api/verify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({ answer }),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        verifyOutput.innerHTML = `<p class="output-placeholder">${result.error || 'Something went wrong. Please try again.'}</p>`;
+        copyReportBtn.disabled = true;
+        return;
+      }
+
+      if (!result.claims || result.claims.length === 0) {
+        verifyOutput.innerHTML = `<p class="output-placeholder">${result.note || 'No checkable claims found.'}</p>`;
+        copyReportBtn.disabled = true;
+        return;
+      }
+
+      const statusMap = {
+        verified: { dot: 'claim-verified', label: 'Verified' },
+        uncertain: { dot: 'claim-uncertain', label: 'Uncertain' },
+        wrong: { dot: 'claim-wrong', label: 'Likely Wrong' },
+      };
+
+      const rows = result.claims
+        .map((c) => {
+          const s = statusMap[c.status] || statusMap.uncertain;
+          return `<div class="claim-row"><span class="claim-dot ${s.dot}"></span><span><strong>${s.label}:</strong> ${c.claim} — <span style="color:var(--text-muted)">${c.reason || ''}</span></span></div>`;
+        })
+        .join('');
+
+      verifyOutput.innerHTML = `${rows}<div class="trust-score">Trust score: <strong>${result.trustScore}%</strong></div>`;
+      copyReportBtn.disabled = false;
+
+      if (result.usage) {
+        document.getElementById('verify-count').textContent = `${result.usage.verify} / ${result.usage.verifyLimit}`;
+        const pct = Math.min(100, (result.usage.verify / result.usage.verifyLimit) * 100);
+        document.getElementById('verify-fill').style.width = `${pct}%`;
+      }
+    } catch (err) {
+      verifyOutput.innerHTML = '<p class="output-placeholder">Network error. Please check your connection and try again.</p>';
+    } finally {
+      verifyBtn.disabled = false;
+      verifyBtn.textContent = 'Verify answer';
+    }
   });
 }
 
