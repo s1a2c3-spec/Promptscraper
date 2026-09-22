@@ -1,0 +1,72 @@
+.account-main {
+  padding: 48px 0 90px;
+  min-height: calc(100vh - 68px);
+}
+
+.account-wrap {
+  max-width: 640px;
+}
+
+.account-wrap h1 {
+  font-size: 1.9rem;
+  margin-bottom: 6px;
+}
+
+.account-sub {
+  font-size: 0.92rem;
+  margin-bottom: 32px;
+}
+
+.acc-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 26px;
+  margin-bottom: 20px;
+}
+
+.acc-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.acc-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.acc-card-head h2 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.usage-block { margin-bottom: 18px; }
+.usage-block:last-of-type { margin-bottom: 8px; }
+
+.usage-block-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.usage-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 16px 0 0;
+}
+
+.billing-placeholder {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+@media (max-width: 500px) {
+  .acc-card-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

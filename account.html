@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account — Promptscaper</title>
+<meta name="description" content="Manage your Promptscaper plan, usage and account.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗺️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="account.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="logo">Promptscaper</a>
+    <nav class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="account.html" class="nav-login">Account</a>
+      <a href="#" class="btn btn-small" id="logout-btn">Log out</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main class="account-main">
+  <div class="wrap account-wrap">
+    <h1>Account</h1>
+    <p class="account-sub" id="account-email">Loading your account...</p>
+
+    <section class="acc-card">
+      <div class="acc-card-head">
+        <div>
+          <p class="acc-label">Current plan</p>
+          <h2 id="plan-name">—</h2>
+        </div>
+        <a href="pricing.html" class="btn btn-primary">Change plan</a>
+      </div>
+    </section>
+
+    <section class="acc-card">
+      <p class="acc-label">This month's usage</p>
+
+      <div class="usage-block">
+        <div class="usage-block-head">
+          <span>Prompt Optimize</span>
+          <span id="acc-optimize-count">0 / 0</span>
+        </div>
+        <div class="usage-bar"><div class="usage-fill" id="acc-optimize-fill"></div></div>
+      </div>
+
+      <div class="usage-block">
+        <div class="usage-block-head">
+          <span>Answer Verify</span>
+          <span id="acc-verify-count">0 / 0</span>
+        </div>
+        <div class="usage-bar"><div class="usage-fill usage-fill-gold" id="acc-verify-fill"></div></div>
+      </div>
+
+      <p class="usage-note">Usage resets on the 1st of each month.</p>
+    </section>
+
+    <section class="acc-card">
+      <p class="acc-label">Billing</p>
+      <p class="billing-placeholder">You're currently on the Free plan, so there's no billing history yet. Upgrade from the Pricing page to unlock Starter or Pro.</p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span class="logo">Promptscaper</span>
+    <p>Built for people who use AI every day and want to trust what it tells them.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
+<script src="auth-guard.js"></script>
+<script src="script.js"></script>
+<script src="account.js"></script>
+</body>
+</html>
