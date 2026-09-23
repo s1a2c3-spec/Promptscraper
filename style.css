@@ -340,6 +340,23 @@ p { color: var(--text-muted); margin: 0 0 16px; }
   margin: 0;
 }
 
+.footer-legal-links {
+  display: flex;
+  gap: 18px;
+  margin-left: auto;
+}
+
+.footer-legal-links a {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.footer-legal-links a:hover { color: var(--text); }
+
+@media (max-width: 600px) {
+  .footer-legal-links { margin-left: 0; }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .hero-grid { grid-template-columns: 1fr; }

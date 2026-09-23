@@ -1,0 +1,62 @@
+.legal-main {
+  padding: 56px 0 90px;
+}
+
+.legal-wrap {
+  max-width: 720px;
+}
+
+.legal-wrap h1 {
+  font-size: 2rem;
+  margin-bottom: 6px;
+}
+
+.legal-updated {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+
+.legal-wrap h2 {
+  font-family: var(--sans);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 36px 0 12px;
+  color: var(--text);
+}
+
+.legal-wrap h2:first-of-type { margin-top: 0; }
+
+.legal-wrap p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0 0 14px;
+}
+
+.legal-wrap ul {
+  margin: 0 0 14px;
+  padding-left: 20px;
+}
+
+.legal-wrap li {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.legal-wrap strong { color: var(--text); }
+
+.legal-wrap a { color: var(--teal); text-decoration: none; }
+.legal-wrap a:hover { text-decoration: underline; }
+
+.legal-contact-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-top: 24px;
+}
+
+.legal-contact-box p { margin-bottom: 6px; }
+.legal-contact-box p:last-child { margin-bottom: 0; }
